@@ -1,0 +1,4 @@
+id,name,price,stock
+PROD-0001,Sample Product 1,100.00,50
+PROD-0002,Sample Product 2,250.00,30
+PROD-0003,Sample Product 3,500.00,20

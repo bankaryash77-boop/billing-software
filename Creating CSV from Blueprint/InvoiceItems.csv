@@ -1,0 +1,4 @@
+InvoiceID,ProductID,ProductName,Quantity,UnitPrice,Subtotal
+INV-1,PROD-0001,Sample Product 1,2,100.00,200.00
+INV-1,PROD-0002,Sample Product 2,1,250.00,250.00
+INV-1,PROD-0003,Sample Product 3,0,500.00,50.00

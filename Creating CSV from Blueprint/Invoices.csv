@@ -1,0 +1,2 @@
+InvoiceID,CustomerName,Phone,Email,Subtotal,Discount,GST%,GSTAmount,Total,Date,Time,PaymentMode,PaymentStatus,AmountPaid
+INV-1,Sample Customer,9876543210,customer@example.com,500.00,0,18,90.00,590.00,2025-01-01,10:00 AM,UPI,Paid,590.00

@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BillFlow Pro — Billing Software</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+        <symbol id="ico-invoice"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></symbol>
+        <symbol id="ico-history"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></symbol>
+        <symbol id="ico-accounts" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></symbol>
+        <symbol id="ico-sheets"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></symbol>
+        <symbol id="ico-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></symbol>
+        <symbol id="ico-user"     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+        <symbol id="ico-box"      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></symbol>
+        <symbol id="ico-cart"     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></symbol>
+        <symbol id="ico-save"     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></symbol>
+        <symbol id="ico-print"    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></symbol>
+        <symbol id="ico-trash"    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></symbol>
+        <symbol id="ico-refresh"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></symbol>
+        <symbol id="ico-link"     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+        <symbol id="ico-image"    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></symbol>
+        <symbol id="ico-receipt"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
+        <symbol id="ico-store"    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+        <symbol id="ico-edit"     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></symbol>
+        <symbol id="ico-payment"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></symbol>
+        <symbol id="ico-check"    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+        <symbol id="ico-close"    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+        <symbol id="ico-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+        <symbol id="ico-search"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+        <symbol id="ico-info"     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></symbol>
+        <symbol id="ico-trending" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></symbol>
+        <symbol id="ico-clock"    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+        <symbol id="ico-repeat"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></symbol>
+        <symbol id="ico-users"    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+        <symbol id="ico-list"     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></symbol>
+        <symbol id="ico-upload"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></symbol>
+    </svg>
+</head>
+<body>
+<div class="app">
+
+    <!-- Sidebar overlay (mobile) -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Sidebar toggle button -->
+    <button class="sidebar-toggle shifted" id="sidebarToggle" onclick="toggleSidebar()" title="Toggle sidebar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+    </button>
+
+    <!-- ══════ SIDEBAR ══════ -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-logo" id="brandLogo">
+                <svg width="22" height="22"><use href="#ico-receipt"/></svg>
+            </div>
+            <div class="brand-text">
+                <h2 class="brand-name" id="brandName">FurniCraft Store</h2>
+                <span class="brand-sub">Billing Software</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-group">
+                <span class="nav-label">WORKSPACE</span>
+                <button class="nav-item active" data-page="invoice" onclick="navigate('invoice')">
+                    <span class="nav-icon"><svg width="16" height="16"><use href="#ico-invoice"/></svg></span>
+                    <span class="nav-label-text">New Invoice</span>
+                </button>
+                <button class="nav-item" data-page="invoices" onclick="navigate('invoices'); loadInvoiceHistory()">
+                    <span class="nav-icon"><svg width="16" height="16"><use href="#ico-history"/></svg></span>
+                    <span class="nav-label-text">Invoices</span>
+                </button>
+                <button class="nav-item" data-page="accounts" onclick="navigate('accounts'); refreshAccounts()">
+                    <span class="nav-icon"><svg width="16" height="16"><use href="#ico-accounts"/></svg></span>
+                    <span class="nav-label-text">Accounts</span>
+                </button>
+                <button class="nav-item" data-page="datasheets" onclick="navigate('datasheets'); if(App.state.connected) syncAllData();">
+                    <span class="nav-icon"><svg width="16" height="16"><use href="#ico-sheets"/></svg></span>
+                    <span class="nav-label-text">Data Sheets</span>
+                    <span class="nav-badge" id="navBadge">4</span>
+                </button>
+            </div>
+            <div class="nav-group">
+                <span class="nav-label">MANAGE</span>
+                <button class="nav-item" data-page="settings" onclick="navigate('settings')">
+                    <span class="nav-icon"><svg width="16" height="16"><use href="#ico-settings"/></svg></span>
+                    <span class="nav-label-text">Settings</span>
+                </button>
+            </div>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="conn-status" id="connStatus">
+                <span class="conn-dot disconnected"></span>
+                <span class="conn-text">Not Connected</span>
+            </div>
+            <button class="btn-sync" onclick="syncAllData()" id="syncBtn">
+                <span class="spinner hidden" id="syncSpin"></span>
+                <svg width="12" height="12"><use href="#ico-refresh"/></svg>
+                Sync Data
+            </button>
+            <button class="btn-disconnect hidden" id="disconnectBtn" onclick="disconnect()">Disconnect</button>
+        </div>
+    </aside>
+
+    <!-- ══════ MAIN ══════ -->
+    <main class="main">
+
+        <!-- NEW INVOICE PAGE -->
+        <div class="page active" id="page-invoice">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">New Invoice</h1>
+                    <p class="page-sub">Build your cart, then save or print</p>
+                </div>
+                <div class="header-actions">
+                    <span class="inv-tag" id="liveInvId">INV-001</span>
+                    <button class="btn btn-outline btn-sm" onclick="clearCart()">
+                        <svg width="13" height="13"><use href="#ico-trash"/></svg> Clear Cart
+                    </button>
+                </div>
+            </div>
+
+            <div class="invoice-grid">
+
+                <!-- Customer Details -->
+                <div class="card">
+                    <div class="card-head">
+                        <h3 class="card-title">
+                            <svg width="15" height="15"><use href="#ico-user"/></svg>
+                            Customer Details
+                        </h3>
+                        <span id="custAutofillBadge" class="autofill-badge hidden">
+                            <svg width="11" height="11"><use href="#ico-check"/></svg> Returning customer
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group" style="position:relative;">
+                            <label class="form-label">Name <span class="req">*</span></label>
+                            <div class="autocomplete-wrap">
+                                <input type="text" id="inpCustName" class="form-control"
+                                       placeholder="Type name to search registered customers…"
+                                       oninput="onCustNameInput()" autocomplete="off">
+                                <div id="custDropdown" class="cust-dropdown hidden"></div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Phone</label>
+                                <input type="tel" id="inpCustPhone" class="form-control"
+                                       placeholder="+91 98765 43210" oninput="onCustPhoneInput()">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" id="inpCustEmail" class="form-control" placeholder="customer@email.com">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">GSTIN</label>
+                                <input type="text" id="inpCustGstin" class="form-control" placeholder="22AAAAA0000A1Z5">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Payment Mode</label>
+                                <select id="inpPaymentMode" class="form-control" onchange="onPaymentModeChange()">
+                                    <option value="Cash">Cash</option>
+                                    <option value="UPI">UPI</option>
+                                    <option value="Card">Card (Debit / Credit)</option>
+                                    <option value="NetBanking">Net Banking</option>
+                                    <option value="Cheque">Cheque</option>
+                                    <option value="Credit">Credit (Pay Later)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="creditMinPayRow" class="form-group hidden">
+                            <label class="form-label" style="color:var(--warning);">Minimum Amount Paid Now (₹)</label>
+                            <input type="number" id="inpMinAmtPaid" class="form-control" min="0" step="0.01" placeholder="0 for full credit, or enter partial amount…" style="border-color:var(--warning);">
+                            <p style="font-size:11px;color:var(--text-muted);margin-top:4px;"><svg width="11" height="11"><use href="#ico-info"/></svg> Leave 0 to save as fully pending. Enter partial amount to mark as partial payment.</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Reference / UTR No.</label>
+                            <input type="text" id="inpPayRef" class="form-control" placeholder="UPI Ref / Cheque No. / Transaction ID">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Address</label>
+                            <textarea id="inpCustAddress" class="form-control" rows="2" placeholder="Street, City, State, PIN"></textarea>
+                        </div>
+                        <div id="custErrors" class="error-box hidden"></div>
+                    </div>
+                </div>
+
+                <!-- Products -->
+                <div class="card">
+                    <div class="card-head">
+                        <h3 class="card-title">
+                            <svg width="15" height="15"><use href="#ico-box"/></svg>
+                            Products
+                        </h3>
+                        <span class="badge" id="prodCountBadge">0 products</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="search-row">
+                            <div style="position:relative;flex:1;">
+                                <svg width="13" height="13" class="search-icon"><use href="#ico-search"/></svg>
+                                <input type="text" id="prodSearch" class="form-control search-with-icon"
+                                       placeholder="Search by name or ID…" oninput="filterProducts()">
+                            </div>
+                            <button class="btn btn-outline btn-sm" onclick="fetchData('getProducts')">
+                                <svg width="13" height="13"><use href="#ico-refresh"/></svg> Refresh
+                            </button>
+                        </div>
+                        <div class="prod-table-wrap">
+                            <table class="table table-products" id="prodSelectTable">
+                                <thead><tr><th>ID</th><th>Product</th><th>Price</th><th>Stock</th><th>Action</th></tr></thead>
+                                <tbody id="prodSelectBody">
+                                    <tr><td colspan="5" class="empty-row">Connect to Google Sheets to load products</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;">
+                            <span style="font-size:11px;color:var(--text-muted)"><span class="stock-badge stock-ok" style="padding:2px 7px;">N</span> Available</span>
+                            <span style="font-size:11px;color:var(--text-muted)"><span class="stock-badge stock-low" style="padding:2px 7px;">N</span> Low (≤5)</span>
+                            <span style="font-size:11px;color:var(--text-muted)"><span class="stock-badge stock-out" style="padding:2px 7px;">0</span> Out</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cart -->
+                <div class="card cart-card">
+                    <div class="card-head">
+                        <h3 class="card-title">
+                            <svg width="15" height="15"><use href="#ico-cart"/></svg>
+                            Billing Cart
+                        </h3>
+                        <span class="badge" id="cartCountBadge">0 items</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="cart-empty" id="cartEmpty">
+                            <svg width="38" height="38" style="opacity:.25;display:block;margin:0 auto 10px;"><use href="#ico-cart"/></svg>
+                            <p style="font-weight:600;color:var(--text-secondary);">Your cart is empty</p>
+                            <p class="cart-empty-sub">Select products from the table above to add them</p>
+                        </div>
+                        <div id="cartItemsList" class="cart-items hidden"></div>
+                        <div id="cartTotals" class="cart-totals hidden">
+                            <div class="total-row"><span>Subtotal</span><span id="cartSub">₹0.00</span></div>
+                            <div class="total-row">
+                                <div class="total-row-label">
+                                    <span>Discount</span>
+                                    <div class="discount-input">
+                                        <input type="number" id="discPct" value="0" min="0" max="100" step="0.5" class="disc-input" oninput="calcTotals()">
+                                        <span class="disc-symbol">%</span>
+                                    </div>
+                                </div>
+                                <span id="cartDisc">-₹0.00</span>
+                            </div>
+                            <div class="total-row">
+                                <div class="total-row-label">
+                                    <span>GST</span>
+                                    <div class="discount-input">
+                                        <input type="number" id="gstPct" value="18" min="0" max="100" step="0.5" class="disc-input" oninput="calcTotals()">
+                                        <span class="disc-symbol">%</span>
+                                    </div>
+                                </div>
+                                <span id="cartGst">₹0.00</span>
+                            </div>
+                            <div class="total-row total-grand"><span>Grand Total</span><span id="cartGrand">₹0.00</span></div>
+                        </div>
+                        <div class="action-btns">
+                            <button class="btn btn-success btn-flex" id="saveBtn" onclick="saveInvoiceOnly()">
+                                <span class="spinner hidden" id="saveSpin"></span>
+                                <svg width="14" height="14"><use href="#ico-save"/></svg>
+                                Save &amp; Checkout
+                            </button>
+                            <button class="btn btn-primary btn-flex" id="printBtn" onclick="printInvoiceDirect()">
+                                <svg width="14" height="14"><use href="#ico-print"/></svg>
+                                Preview Invoice
+                            </button>
+                        </div>
+                        <p class="stock-note">
+                            <svg width="12" height="12"><use href="#ico-info"/></svg>
+                            <span><strong>Stock logic:</strong> Displayed = Actual (Sheet) − Cart Qty. Sheet is updated only on <em>Save &amp; Checkout</em>.</span>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- /page-invoice -->
+
+
+        <!-- INVOICES PAGE -->
+        <div class="page" id="page-invoices">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Invoice History</h1>
+                    <p class="page-sub">View, edit and manage all past invoices</p>
+                </div>
+                <div class="header-actions">
+                    <!-- Period filter -->
+                    <div class="period-toggle-group">
+                        <button class="period-btn" onclick="setPeriod('daily',this)">Daily</button>
+                        <button class="period-btn" onclick="setPeriod('monthly',this)">Monthly</button>
+                        <button class="period-btn active" onclick="setPeriod('all',this)">All</button>
+                    </div>
+                    <input type="date" id="invDateFrom" class="form-control" style="width:140px;" onchange="applyDateFilter()">
+                    <span style="color:var(--text-muted);font-size:12px;">→</span>
+                    <input type="date" id="invDateTo" class="form-control" style="width:140px;" onchange="applyDateFilter()">
+                    <!-- Profit toggle -->
+                    <label class="profit-toggle-wrap" title="Show/hide profit & margin">
+                        <input type="checkbox" id="profitToggle" onchange="toggleProfitCols(this.checked)" checked>
+                        <span class="profit-toggle-label">P&amp;L</span>
+                    </label>
+                    <div style="position:relative;">
+                        <svg width="13" height="13" class="search-icon"><use href="#ico-search"/></svg>
+                        <input type="text" id="invSearchBox" class="form-control search-with-icon" style="width:180px;" placeholder="Search invoices…" oninput="filterInvoiceHistory()">
+                    </div>
+                    <select id="invPayFilter" class="form-control" style="width:130px;" onchange="filterInvoiceHistory()">
+                        <option value="">All Modes</option>
+                        <option value="Cash">Cash</option>
+                        <option value="UPI">UPI</option>
+                        <option value="Card">Card</option>
+                        <option value="NetBanking">Net Banking</option>
+                        <option value="Cheque">Cheque</option>
+                        <option value="Credit">Credit</option>
+                    </select>
+                    <select id="invStatusFilter" class="form-control" style="width:120px;" onchange="filterInvoiceHistory()">
+                        <option value="">All Status</option>
+                        <option value="Paid">Paid</option>
+                        <option value="Partial">Partial</option>
+                        <option value="Pending">Pending</option>
+                    </select>
+                    <button class="btn btn-outline btn-sm" onclick="syncAllData()" title="Refresh from Google Sheets">
+                        <svg width="13" height="13"><use href="#ico-refresh"/></svg> Refresh
+                    </button>
+                </div>
+            </div>
+            <!-- Summary band -->
+            <div class="period-summary-band" id="invSummaryBand">
+                Period: <strong id="invPeriodLabel">All time</strong> &nbsp;·&nbsp;
+                <strong id="invSummaryCount">—</strong> invoices &nbsp;·&nbsp;
+                Revenue: <strong id="invSummaryRev">₹0</strong> &nbsp;·&nbsp;
+                <span class="profit-col-item">Est. Profit: <strong id="invSummaryProfit" style="color:var(--success)">₹0</strong> &nbsp;·&nbsp; Avg Margin: <strong id="invSummaryMargin" style="color:var(--success)">0%</strong> &nbsp;·&nbsp;</span>
+                Collected: <strong id="invSummaryCollected">₹0</strong> &nbsp;·&nbsp;
+                Outstanding: <strong id="invSummaryOutstanding" style="color:var(--danger)">₹0</strong>
+            </div>
+            <div class="table-wrap card" style="margin-bottom:0;">
+                <table class="table table-data" id="invHistoryTable">
+                    <thead>
+                        <tr>
+                            <th>Invoice #</th><th>Customer</th><th>Date</th>
+                            <th>Payment Mode</th><th>Total</th>
+                            <th class="profit-col-item">Est. Profit</th>
+                            <th class="profit-col-item">Margin</th>
+                            <th>Paid</th><th>Balance</th><th>Status</th><th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="invHistoryBody">
+                        <tr><td colspan="11" class="empty-row">No invoices yet — create one from New Invoice</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><!-- /page-invoices -->
+
+
+        <!-- ACCOUNTS PAGE -->
+        <div class="page" id="page-accounts">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Accounts Overview</h1>
+                    <p class="page-sub">Track sales, collections and pending payments</p>
+                </div>
+                <div class="header-actions">
+                    <div class="period-toggle-group">
+                        <button class="period-btn" onclick="setPeriod('daily',this)">Daily</button>
+                        <button class="period-btn" onclick="setPeriod('monthly',this)">Monthly</button>
+                        <button class="period-btn active" onclick="setPeriod('all',this)">All</button>
+                    </div>
+                    <input type="date" id="accDateFrom" class="form-control" style="width:140px;" onchange="applyDateFilter()">
+                    <span style="color:var(--text-muted);font-size:12px;">→</span>
+                    <input type="date" id="accDateTo" class="form-control" style="width:140px;" onchange="applyDateFilter()">
+                    <button class="btn btn-outline" onclick="syncAllData()">
+                        <svg width="13" height="13"><use href="#ico-refresh"/></svg> Refresh
+                    </button>
+                </div>
+            </div>
+            <div class="accounts-kpi-row">
+                <div class="kpi-card kpi-total">
+                    <div class="kpi-icon"><svg width="24" height="24"><use href="#ico-trending"/></svg></div>
+                    <div class="kpi-content">
+                        <span class="kpi-label">Total Sales</span>
+                        <span class="kpi-value" id="accTotalSales">₹0</span>
+                        <span class="kpi-sub" id="accTotalInvCount">0 invoices</span>
+                    </div>
+                </div>
+                <div class="kpi-card kpi-collected">
+                    <div class="kpi-icon"><svg width="24" height="24"><use href="#ico-check"/></svg></div>
+                    <div class="kpi-content">
+                        <span class="kpi-label">Amount Collected</span>
+                        <span class="kpi-value" id="accCollected">₹0</span>
+                        <span class="kpi-sub" id="accPaidCount">0 fully paid</span>
+                    </div>
+                </div>
+                <div class="kpi-card kpi-pending">
+                    <div class="kpi-icon"><svg width="24" height="24"><use href="#ico-clock"/></svg></div>
+                    <div class="kpi-content">
+                        <span class="kpi-label">Pending / Outstanding</span>
+                        <span class="kpi-value" id="accPending">₹0</span>
+                        <span class="kpi-sub" id="accPendingCount">0 invoices due</span>
+                    </div>
+                </div>
+                <div class="kpi-card kpi-partial">
+                    <div class="kpi-icon"><svg width="24" height="24"><use href="#ico-repeat"/></svg></div>
+                    <div class="kpi-content">
+                        <span class="kpi-label">Partial Payments</span>
+                        <span class="kpi-value" id="accPartial">₹0</span>
+                        <span class="kpi-sub" id="accPartialCount">0 invoices partial</span>
+                    </div>
+                </div>
+                <!-- NEW: Profit KPIs -->
+                <div class="kpi-card kpi-profit profit-col-item">
+                    <div class="kpi-icon" style="color:var(--success);"><svg width="24" height="24"><use href="#ico-trending"/></svg></div>
+                    <div class="kpi-content">
+                        <span class="kpi-label">Est. Profit</span>
+                        <span class="kpi-value" id="accEstProfit" style="color:var(--success)">₹0</span>
+                        <span class="kpi-sub" id="accCogsPct">after ~30% COGS</span>
+                    </div>
+                </div>
+                <div class="kpi-card kpi-margin profit-col-item">
+                    <div class="kpi-icon" style="color:#06b6d4;"><svg width="24" height="24"><use href="#ico-receipt"/></svg></div>
+                    <div class="kpi-content">
+                        <span class="kpi-label">Net Margin</span>
+                        <span class="kpi-value" id="accNetMargin" style="color:#06b6d4;">0%</span>
+                        <span class="kpi-sub">on filtered period</span>
+                    </div>
+                </div>
+            </div>
+            <div class="accounts-grid">
+                <div class="card">
+                    <div class="card-head">
+                        <h3 class="card-title"><svg width="15" height="15"><use href="#ico-payment"/></svg> Collections by Payment Mode</h3>
+                    </div>
+                    <div class="card-body" id="accPayModeBreakdown"><p class="empty-row">No data yet</p></div>
+                </div>
+                <div class="card">
+                    <div class="card-head">
+                        <h3 class="card-title"><svg width="15" height="15"><use href="#ico-list"/></svg> Pending Payments</h3>
+                    </div>
+                    <div class="card-body" style="padding:0;">
+                        <table class="table table-data" style="border:none;">
+                            <thead><tr><th>Invoice #</th><th>Customer</th><th>Total</th><th>Paid</th><th>Balance</th><th>Action</th></tr></thead>
+                            <tbody id="accPendingTable"><tr><td colspan="6" class="empty-row">No pending payments</td></tr></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- NEW: Monthly P&L Table -->
+            <div class="card profit-col-item" style="margin-top:16px;">
+                <div class="card-head">
+                    <h3 class="card-title"><svg width="15" height="15"><use href="#ico-trending"/></svg> Monthly P&amp;L Breakdown</h3>
+                    <span style="font-size:11px;color:var(--text-muted);">Est. 30% COGS — toggle P&amp;L button to show/hide</span>
+                </div>
+                <div class="card-body" style="padding:0;">
+                    <table class="table table-data" style="border:none;">
+                        <thead><tr>
+                            <th>Month</th><th>Invoices</th><th>Revenue</th>
+                            <th>Est. Profit</th><th>Margin</th>
+                            <th>Collected</th><th>Outstanding</th>
+                        </tr></thead>
+                        <tbody id="monthlyPLBody"><tr><td colspan="7" class="empty-row">Sync data to load</td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+        </div><!-- /page-accounts -->
+
+
+        <!-- DATA SHEETS PAGE -->
+        <div class="page" id="page-datasheets">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Data Sheets</h1>
+                    <p class="page-sub">Live view of your Google Sheets data</p>
+                </div>
+                <button class="btn btn-outline" onclick="syncAllData()">
+                    <svg width="13" height="13"><use href="#ico-refresh"/></svg> Refresh All
+                </button>
+            </div>
+            <div class="stats-row">
+                <div class="stat-card"><span class="stat-label">Products</span><span class="stat-value" id="statProd">0</span><span class="stat-sub">in inventory</span></div>
+                <div class="stat-card"><span class="stat-label">Invoices</span><span class="stat-value" id="statInv">0</span><span class="stat-sub">generated</span></div>
+                <div class="stat-card"><span class="stat-label">Customers</span><span class="stat-value" id="statCust">0</span><span class="stat-sub">on record</span></div>
+                <div class="stat-card"><span class="stat-label">Revenue</span><span class="stat-value" id="statRev">₹0</span><span class="stat-sub">total billed</span></div>
+            </div>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="tabProducts"  onclick="switchTab(this)"><svg width="13" height="13"><use href="#ico-box"/></svg> Products</button>
+                <button class="tab-btn"         data-tab="tabInvoices"  onclick="switchTab(this)"><svg width="13" height="13"><use href="#ico-invoice"/></svg> Invoices</button>
+                <button class="tab-btn"         data-tab="tabCustomers" onclick="switchTab(this)"><svg width="13" height="13"><use href="#ico-users"/></svg> Customers</button>
+                <button class="tab-btn"         data-tab="tabItems"     onclick="switchTab(this)"><svg width="13" height="13"><use href="#ico-list"/></svg> Line Items</button>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tabProducts">
+                    <div style="display:flex;justify-content:flex-end;margin-bottom:12px;">
+                        <button class="btn btn-primary btn-sm" onclick="openProductModal()">
+                            <svg width="13" height="13"><use href="#ico-box"/></svg> Add Product
+                        </button>
+                    </div>
+                    <div class="table-wrap"><table class="table table-data"><thead><tr><th>ID</th><th>Name</th><th>Price</th><th>Stock</th><th>Status</th><th>Actions</th></tr></thead><tbody id="tblProducts"><tr><td colspan="6" class="empty-row">No data — connect &amp; sync</td></tr></tbody></table></div>
+                </div>
+                <div class="tab-pane" id="tabInvoices">
+                    <div class="table-wrap"><table class="table table-data"><thead><tr><th>Invoice #</th><th>Customer</th><th>Phone</th><th>Total</th><th>Date</th></tr></thead><tbody id="tblInvoices"><tr><td colspan="5" class="empty-row">No data</td></tr></tbody></table></div>
+                </div>
+                <div class="tab-pane" id="tabCustomers">
+                    <div class="table-wrap"><table class="table table-data"><thead><tr><th>ID</th><th>Name</th><th>Phone</th><th>Email</th><th>GSTIN</th></tr></thead><tbody id="tblCustomers"><tr><td colspan="5" class="empty-row">No data</td></tr></tbody></table></div>
+                </div>
+                <div class="tab-pane" id="tabItems">
+                    <div class="table-wrap"><table class="table table-data"><thead><tr><th>Invoice #</th><th>Product</th><th>Qty</th><th>Rate</th><th>Subtotal</th></tr></thead><tbody id="tblItems"><tr><td colspan="5" class="empty-row">No data</td></tr></tbody></table></div>
+                </div>
+            </div>
+        </div><!-- /page-datasheets -->
+
+
+        <!-- SETTINGS PAGE -->
+        <div class="page" id="page-settings">
+            <div class="page-header">
+                <div><h1 class="page-title">Settings</h1><p class="page-sub">Configure your billing software</p></div>
+                <button class="btn btn-primary" onclick="saveSettings()">
+                    <svg width="14" height="14"><use href="#ico-save"/></svg> Save Settings
+                </button>
+            </div>
+            <div class="settings-grid">
+                <div class="card">
+                    <div class="card-head"><h3 class="card-title"><svg width="15" height="15"><use href="#ico-store"/></svg> Shop Information</h3></div>
+                    <div class="card-body">
+                        <div class="form-group"><label class="form-label">Business Name</label><input type="text" id="setShopName" class="form-control" placeholder="FurniCraft Interiors"></div>
+                        <div class="form-group"><label class="form-label">Address</label><textarea id="setShopAddr" class="form-control" rows="2" placeholder="42 Commerce Lane, Bengaluru 560001"></textarea></div>
+                        <div class="form-group"><label class="form-label">Phone</label><input type="tel" id="setShopPhone" class="form-control" placeholder="+91 98765 43210"></div>
+                        <div class="form-group"><label class="form-label">Email</label><input type="email" id="setShopEmail" class="form-control" placeholder="hello@store.in"></div>
+                        <div class="form-group"><label class="form-label">GSTIN</label><input type="text" id="setShopGstin" class="form-control" placeholder="29AABCU9603R1ZX"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-head"><h3 class="card-title"><svg width="15" height="15"><use href="#ico-link"/></svg> Google Sheets Connection</h3></div>
+                    <div class="card-body">
+                        <div class="form-group"><label class="form-label">Apps Script URL</label><input type="url" id="setAppUrl" class="form-control" placeholder="https://script.google.com/macros/s/.../exec"></div>
+                        <div class="form-group"><label class="form-label">Products Sheet Name</label><input type="text" id="setSheetName" class="form-control" value="Billflow Products"></div>
+                        <button class="btn btn-outline btn-full" onclick="testConnection()" id="testBtn">
+                            <span class="spinner hidden" id="testSpin"></span>
+                            <svg width="13" height="13"><use href="#ico-refresh"/></svg> Test Connection
+                        </button>
+                        <div id="testResult" class="result-box hidden"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-head"><h3 class="card-title"><svg width="15" height="15"><use href="#ico-image"/></svg> Company Logo</h3></div>
+                    <div class="card-body">
+                        <div class="logo-upload">
+                            <div class="logo-preview" id="logoPreview">
+                                <img id="logoImg" src="" alt="" style="display:none;">
+                                <span id="logoFallback"><svg width="28" height="28" style="opacity:.35;"><use href="#ico-receipt"/></svg></span>
+                            </div>
+                            <div class="logo-details">
+                                <p class="logo-title">Upload Logo</p>
+                                <p class="logo-sub">Appears on invoices &amp; sidebar<br>PNG, JPG — max 2 MB</p>
+                                <div class="logo-actions">
+                                    <label class="btn btn-outline btn-sm">
+                                        <svg width="12" height="12"><use href="#ico-upload"/></svg> Choose File
+                                        <input type="file" id="logoInput" accept="image/*" class="hidden" onchange="uploadLogo(event)">
+                                    </label>
+                                    <button class="btn btn-danger btn-sm" onclick="removeLogo()">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-head"><h3 class="card-title"><svg width="15" height="15"><use href="#ico-print"/></svg> Bill / Invoice Format</h3></div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="form-label">Bill Type</label>
+                            <div class="bill-type-selector">
+                                <label class="bill-type-option">
+                                    <input type="radio" name="billType" id="billTypeA4" value="a4" onchange="onBillTypeChange(this.value)" checked>
+                                    <div class="bill-type-card">
+                                        <div class="bill-type-preview bill-preview-a4">
+                                            <div style="height:8px;background:#e2e8f0;border-radius:2px;margin-bottom:5px;"></div>
+                                            <div style="height:3px;background:#cbd5e1;border-radius:1px;margin-bottom:2px;width:70%;"></div>
+                                            <div style="height:3px;background:#cbd5e1;border-radius:1px;margin-bottom:8px;width:50%;"></div>
+                                            <div style="height:2px;background:#e2e8f0;border-radius:1px;margin-bottom:2px;"></div>
+                                            <div style="height:2px;background:#e2e8f0;border-radius:1px;margin-bottom:2px;"></div>
+                                            <div style="height:2px;background:#e2e8f0;border-radius:1px;margin-bottom:8px;"></div>
+                                            <div style="height:4px;background:#0d9488;border-radius:1px;width:50%;margin:0 auto;"></div>
+                                        </div>
+                                        <div class="bill-type-label"><strong>A4 Invoice</strong><span>Professional full-page invoice with logo &amp; itemised table</span></div>
+                                    </div>
+                                </label>
+                                <label class="bill-type-option">
+                                    <input type="radio" name="billType" id="billType80" value="80mm" onchange="onBillTypeChange(this.value)">
+                                    <div class="bill-type-card">
+                                        <div class="bill-type-preview bill-preview-80mm">
+                                            <div style="height:5px;background:#e2e8f0;border-radius:1px;margin-bottom:2px;width:70%;margin-left:auto;margin-right:auto;"></div>
+                                            <div style="height:3px;background:#cbd5e1;border-radius:1px;margin-bottom:3px;width:50%;margin-left:auto;margin-right:auto;"></div>
+                                            <div style="border-top:1px dashed #cbd5e1;margin:3px 0;"></div>
+                                            <div style="height:2px;background:#e2e8f0;border-radius:1px;margin-bottom:1px;"></div>
+                                            <div style="height:2px;background:#e2e8f0;border-radius:1px;margin-bottom:1px;"></div>
+                                            <div style="height:2px;background:#e2e8f0;border-radius:1px;margin-bottom:3px;"></div>
+                                            <div style="border-top:1px dashed #cbd5e1;margin:3px 0;"></div>
+                                            <div style="height:4px;background:#0d9488;border-radius:1px;width:40%;margin:0 auto;"></div>
+                                        </div>
+                                        <div class="bill-type-label"><strong>80mm Thermal</strong><span>Compact POS receipt — like DMart / grocery shops</span></div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div id="thermalOptions" class="hidden" style="margin-top:12px;padding:14px;background:var(--bg);border-radius:8px;border:1px solid var(--border);display:flex;flex-direction:column;gap:10px;">
+                            <div class="form-group" style="margin:0"><label class="form-label">Shop Tagline</label><input type="text" id="setThermalTagline" class="form-control" placeholder="Quality Products at Best Prices"></div>
+                            <div class="form-row" style="margin:0">
+                                <div class="form-group" style="margin:0"><label class="form-label">Show HSN Codes</label><select id="setShowHsn" class="form-control"><option value="no">No</option><option value="yes">Yes</option></select></div>
+                                <div class="form-group" style="margin:0"><label class="form-label">Cashier Label</label><input type="text" id="setThermalCashier" class="form-control" placeholder="Counter 1"></div>
+                            </div>
+                            <div class="form-group" style="margin:0"><label class="form-label">Receipt Footer</label><input type="text" id="setThermalFooter" class="form-control" placeholder="Thank you! Visit again 🙏"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-head"><h3 class="card-title"><svg width="15" height="15"><use href="#ico-invoice"/></svg> Invoice Defaults</h3></div>
+                    <div class="card-body">
+                        <div class="form-group"><label class="form-label">Default GST %</label><input type="number" id="setDefGst" class="form-control" value="18" min="0" max="100"></div>
+                        <div class="form-row">
+                            <div class="form-group"><label class="form-label">Invoice Number Prefix</label><input type="text" id="setInvPrefix" class="form-control" value="INV-"></div>
+                            <div class="form-group"><label class="form-label">Next Invoice Counter</label><input type="number" id="setInvCounter" class="form-control" value="10" min="1"></div>
+                        </div>
+                        <div class="form-group"><label class="form-label">Invoice Footer Text</label><textarea id="setInvFooter" class="form-control" rows="2" placeholder="Thank you for your business."></textarea></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-head"><h3 class="card-title"><svg width="15" height="15"><use href="#ico-trending"/></svg> Profit & Margin Settings</h3></div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="form-label">COGS % <span style="font-weight:400;color:var(--text-muted)">(Cost of Goods Sold)</span></label>
+                            <div style="display:flex;align-items:center;gap:10px;">
+                                <input type="number" id="setCogsPct" class="form-control" value="30" min="0" max="100" step="0.5" style="max-width:120px;">
+                                <span style="font-size:13px;color:var(--text-muted);">% of revenue assumed as cost</span>
+                            </div>
+                            <p style="font-size:12px;color:var(--text-muted);margin-top:6px;">Est. Profit = Revenue × (1 − COGS%). Used in Invoices &amp; Accounts P&amp;L.</p>
+                        </div>
+                        <div style="background:var(--accent-light);border:1px solid var(--accent-soft);border-radius:8px;padding:12px 14px;margin-top:4px;">
+                            <p style="font-size:12px;color:var(--accent);font-weight:600;">Preview: At <span id="cogsPreviewPct">30</span>% COGS → Est. Margin = <span id="cogsPreviewMargin">70.0</span>%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /page-settings -->
+
+    </main>
+</div><!-- /app -->
+
+
+<!-- INVOICE MODAL -->
+<div class="modal" id="invoiceModal">
+    <div class="modal-bg" onclick="closeInvoice()"></div>
+    <div class="modal-dialog">
+        <div class="invoice-doc" id="invoiceDoc">
+            <div class="doc-top">
+                <div class="doc-top-left">
+                    <div class="doc-logo-wrap">
+                        <img id="docLogo" class="doc-logo" src="" alt="" style="display:none;">
+                        <div id="docLogoPlaceholder" class="doc-logo-placeholder">
+                            <span style="font-size:11px;font-weight:700;color:#9ca3af;">Replace with</span>
+                            <span style="font-size:20px;font-weight:900;color:#374151;">LOGO</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="doc-top-right"><h2 class="doc-main-title">Invoicing</h2></div>
+            </div>
+            <div class="doc-shop-row">
+                <div class="doc-shop-left">
+                    <p id="docShopName" class="doc-shop-name"></p>
+                    <p id="docShopAddr" class="doc-detail"></p>
+                    <p id="docShopGstin" class="doc-detail"></p>
+                </div>
+                <div class="doc-shop-right">
+                    <p id="docShopPhone" class="doc-detail doc-contact-line"></p>
+                    <p id="docShopEmail" class="doc-detail doc-contact-line"></p>
+                </div>
+            </div>
+            <div class="doc-band">
+                <div class="doc-band-col">
+                    <p class="doc-band-label">Bill to</p>
+                    <p id="docCustName" class="doc-band-name"></p>
+                    <p id="docCustAddr" class="doc-band-detail"></p>
+                </div>
+                <div class="doc-band-col">
+                    <p class="doc-band-label">Details</p>
+                    <p class="doc-band-detail"><span class="doc-band-key">Invoice #</span> <span id="docInvNum">INV-001</span></p>
+                    <p class="doc-band-detail"><span class="doc-band-key">Invoice date</span> <span id="docInvDate"></span></p>
+                    <p class="doc-band-detail"><span class="doc-band-key">Due date</span> <span id="docDueDate"></span></p>
+                    <p class="doc-band-detail"><span class="doc-band-key">Payment</span> <span id="docPayMode">Cash</span></p>
+                </div>
+            </div>
+            <table class="doc-table">
+                <thead><tr>
+                    <th class="col-product">Product / Service</th>
+                    <th class="col-qty">Qty</th>
+                    <th class="col-rate">Rate</th>
+                    <th class="col-amount text-right">Amount</th>
+                </tr></thead>
+                <tbody id="docItems"></tbody>
+            </table>
+            <div class="doc-bottom">
+                <div class="doc-message-col">
+                    <p class="doc-message-label">Message</p>
+                    <p class="doc-message-text" id="docCustomerMsg"></p>
+                </div>
+                <div class="doc-totals-col">
+                    <div class="doc-total-line"><span>Subtotal</span><span id="docSub">₹0.00</span></div>
+                    <div class="doc-total-line doc-disc-line"><span>Discount (<span id="docDiscPct">0</span>%)</span><span id="docDisc">-₹0.00</span></div>
+                    <div class="doc-total-line"><span>GST (<span id="docGstPct">18</span>%)</span><span id="docGst">₹0.00</span></div>
+                    <div class="doc-grand-line"><span class="doc-grand-label">Total</span><span id="docGrand" class="doc-grand-val">₹0.00</span></div>
+                    <div id="docPayStatus" class="doc-pay-status" style="display:none;margin-top:8px;justify-content:flex-end;font-size:13px;"></div>
+                </div>
+            </div>
+            <div class="doc-footer">
+                <p id="docShopFooter" style="font-size:12px;color:#6b7280;margin-bottom:6px;"></p>
+                <p class="doc-watermark">Generated by BillFlow Pro</p>
+            </div>
+        </div>
+
+        <!-- ══ 80mm THERMAL RECEIPT ══ -->
+        <div class="thermal-wrap hidden" id="thermalWrap">
+        <div class="thermal-receipt" id="thermalDoc">
+            <div class="thermal-header">
+                <div id="trShopName" class="thermal-shop-name"></div>
+                <div id="trTagline"  class="thermal-tagline"></div>
+                <div id="trAddr"     class="thermal-shop-addr"></div>
+                <div id="trPhone"    class="thermal-shop-phone"></div>
+                <div id="trGstin"    class="thermal-shop-gstin"></div>
+            </div>
+            <hr class="tr-hr tr-hr-dashed">
+            <div class="thermal-meta">
+                <div class="thermal-meta-row"><span>Bill No :</span><span id="trInvNum"></span></div>
+                <div class="thermal-meta-row"><span>Date    :</span><span id="trDate"></span></div>
+                <div class="thermal-meta-row"><span>Cashier :</span><span id="trCashier">Counter 1</span></div>
+                <div class="thermal-meta-row"><span>Customer:</span><span id="trCustName"></span></div>
+                <div id="trPhoneRow" class="thermal-meta-row"><span>Phone   :</span><span id="trCustPhone"></span></div>
+            </div>
+            <hr class="tr-hr tr-hr-dashed">
+            <table class="tr-table">
+                <thead><tr>
+                    <th style="text-align:left;">Particulars</th>
+                    <th style="text-align:right;width:28px;">Qty</th>
+                    <th style="text-align:right;width:52px;">Rate</th>
+                    <th style="text-align:right;width:52px;">Amt</th>
+                </tr></thead>
+                <tbody id="trItems"></tbody>
+            </table>
+            <hr class="tr-hr tr-hr-dashed">
+            <div class="thermal-totals">
+                <div class="thermal-total-row"><span>Subtotal</span><span id="trSub"></span></div>
+                <div class="thermal-total-row" id="trDiscRow" style="display:none;"><span id="trDiscLabel">Discount</span><span id="trDisc" style="color:#c00;"></span></div>
+                <div class="thermal-total-row" id="trGstRow"><span id="trGstLabel">GST</span><span id="trGst"></span></div>
+            </div>
+            <hr class="tr-hr tr-hr-solid">
+            <div class="thermal-grand"><span>GRAND TOTAL</span><span id="trGrand"></span></div>
+            <hr class="tr-hr tr-hr-solid">
+            <div class="thermal-payment">
+                <div class="thermal-total-row"><span>Mode    :</span><span id="trPayMode"></span></div>
+                <div class="thermal-total-row"><span>Paid    :</span><span id="trPaid"></span></div>
+                <div class="thermal-total-row" id="trBalRow"><span>Balance :</span><span id="trBal" style="color:#c00;font-weight:700;"></span></div>
+            </div>
+            <hr class="tr-hr tr-hr-dashed">
+            <div id="trGstBlock" class="thermal-gst-block"></div>
+            <div class="thermal-footer">
+                <div id="trFooterMsg" class="thermal-footer-msg"></div>
+                <div class="thermal-watermark">Powered by BillFlow Pro</div>
+            </div>
+        </div>
+        </div><!-- end thermal-wrap -->
+
+        <div class="modal-footer no-print">
+            <button class="btn btn-outline" onclick="closeInvoice()"><svg width="13" height="13"><use href="#ico-close"/></svg> Close</button>
+            <button class="btn btn-outline" onclick="downloadInvoicePDF()"><svg width="13" height="13"><use href="#ico-download"/></svg> Save as PDF</button>
+            <button class="btn btn-whatsapp" onclick="shareInvoiceWhatsApp()" id="whatsappShareBtn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                <span id="whatsappBtnText">WhatsApp</span>
+            </button>
+            <button class="btn btn-primary" onclick="window.print()"><svg width="13" height="13"><use href="#ico-print"/></svg> Print</button>
+        </div>
+    </div>
+</div>
+<div class="modal" id="editInvoiceModal">
+    <div class="modal-bg" onclick="closeEditInvoice()"></div>
+    <div class="modal-dialog" style="max-width:760px;">
+        <div style="padding:24px 28px 0;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border);padding-bottom:18px;">
+            <svg width="20" height="20" style="color:var(--accent);flex-shrink:0;"><use href="#ico-edit"/></svg>
+            <div>
+                <h2 style="font-size:17px;font-weight:800;margin-bottom:2px;">Edit Invoice</h2>
+                <p style="font-size:12px;color:var(--text-muted);">Editing: <span id="editInvId" class="mono" style="color:var(--accent);font-weight:700;"></span></p>
+            </div>
+        </div>
+        <div style="padding:20px 28px;max-height:70vh;overflow-y:auto;">
+            <div class="form-row">
+                <div class="form-group"><label class="form-label">Customer Name</label><input type="text" id="editCustName" class="form-control"></div>
+                <div class="form-group"><label class="form-label">Phone</label><input type="tel" id="editCustPhone" class="form-control"></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group"><label class="form-label">Email</label><input type="email" id="editCustEmail" class="form-control"></div>
+                <div class="form-group">
+                    <label class="form-label">Payment Mode</label>
+                    <select id="editPayMode" class="form-control">
+                        <option value="Cash">Cash</option><option value="UPI">UPI</option>
+                        <option value="Card">Card</option><option value="NetBanking">Net Banking</option>
+                        <option value="Cheque">Cheque</option><option value="Credit">Credit (Pay Later)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Payment Status</label>
+                    <select id="editPayStatus" class="form-control">
+                        <option value="Paid">Paid</option><option value="Partial">Partial</option><option value="Pending">Pending</option>
+                    </select>
+                </div>
+                <div class="form-group"><label class="form-label">Amount Paid (₹)</label><input type="number" id="editAmtPaid" class="form-control" min="0" step="0.01" oninput="updateEditBalance()"></div>
+            </div>
+            <div class="form-group">
+                <div style="display:flex;justify-content:space-between;align-items:center;background:var(--bg);padding:12px;border-radius:6px;border:1px solid var(--border);">
+                    <span style="font-size:13px;font-weight:600;color:var(--text-secondary);">Balance Due:</span>
+                    <span id="editBalanceDue" style="font-weight:800;color:var(--danger);font-size:15px;">₹0.00</span>
+                </div>
+            </div>
+
+            <!-- Product line items editor -->
+            <div style="border-top:1px solid var(--border);margin-top:8px;padding-top:16px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                    <h4 style="font-size:13px;font-weight:700;color:var(--text-primary);display:flex;align-items:center;gap:6px;">
+                        <svg width="14" height="14"><use href="#ico-box"/></svg> Products in this Invoice
+                    </h4>
+                    <button class="btn btn-outline btn-sm" onclick="editInvAddProduct()">
+                        <svg width="12" height="12"><use href="#ico-box"/></svg> Add Product
+                    </button>
+                </div>
+                <div id="editInvProductSearch" class="hidden" style="margin-bottom:10px;position:relative;">
+                    <input type="text" id="editProdSearchInput" class="form-control" placeholder="Search product to add…" oninput="filterEditProdSearch()" style="padding-left:32px;">
+                    <svg width="13" height="13" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-muted);"><use href="#ico-search"/></svg>
+                    <div id="editProdSearchResults" class="cust-dropdown" style="max-height:160px;"></div>
+                </div>
+                <div id="editInvItemsList" style="display:flex;flex-direction:column;gap:8px;min-height:40px;"></div>
+                <div style="margin-top:12px;padding:12px;background:var(--bg);border-radius:8px;border:1px solid var(--border);">
+                    <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:4px;"><span>Subtotal</span><span id="editInvSubtotal">₹0.00</span></div>
+                    <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:4px;"><span>Discount (<span id="editInvDiscPct">0</span>%)</span><span id="editInvDiscount">-₹0.00</span></div>
+                    <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:4px;"><span>GST (<span id="editInvGstPct">0</span>%)</span><span id="editInvGst">₹0.00</span></div>
+                    <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:800;color:var(--text-primary);border-top:1px solid var(--border);padding-top:8px;margin-top:4px;"><span>Grand Total</span><span id="editInvTotal" style="color:var(--accent);">₹0.00</span></div>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top:14px;"><label class="form-label">Notes / Remarks</label><textarea id="editNotes" class="form-control" rows="2" placeholder="Internal notes..."></textarea></div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closeEditInvoice()">Cancel</button>
+            <button class="btn btn-primary" onclick="saveEditInvoice()"><svg width="13" height="13"><use href="#ico-save"/></svg> Save Changes</button>
+        </div>
+    </div>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div class="modal" id="productModal">
+    <div class="modal-bg" onclick="closeProductModal()"></div>
+    <div class="modal-dialog" style="max-width:460px;">
+        <div style="padding:28px 28px 0;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border);padding-bottom:18px;">
+            <svg width="20" height="20" style="color:var(--accent);flex-shrink:0;"><use href="#ico-box"/></svg>
+            <div>
+                <h2 style="font-size:17px;font-weight:800;margin-bottom:2px;">Product Details</h2>
+                <p style="font-size:12px;color:var(--text-muted);">Manage product (local override)</p>
+            </div>
+        </div>
+        <div style="padding:20px 28px;">
+            <div class="form-group"><label class="form-label">Product ID</label><input type="text" id="editProdId" class="form-control mono"></div>
+            <div class="form-group"><label class="form-label">Name <span class="req">*</span></label><input type="text" id="editProdName" class="form-control"></div>
+            <div class="form-row">
+                <div class="form-group"><label class="form-label">Price (₹)</label><input type="number" id="editProdPrice" class="form-control" min="0" step="0.01"></div>
+                <div class="form-group"><label class="form-label">Stock</label><input type="number" id="editProdStock" class="form-control" min="0"></div>
+            </div>
+            <p style="font-size:12px;color:var(--text-muted);margin-top:8px;"><svg width="12" height="12"><use href="#ico-info"/></svg> Local changes do not sync back to Google Sheets automatically.</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closeProductModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="saveProduct()"><svg width="13" height="13"><use href="#ico-save"/></svg> Save Product</button>
+        </div>
+    </div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div class="modal" id="paymentModal">
+    <div class="modal-bg" onclick="closePaymentModal()"></div>
+    <div class="modal-dialog" style="max-width:460px;">
+        <div style="padding:28px 28px 0;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border);padding-bottom:18px;">
+            <svg width="20" height="20" style="color:var(--success);flex-shrink:0;"><use href="#ico-payment"/></svg>
+            <div>
+                <h2 style="font-size:17px;font-weight:800;margin-bottom:2px;">Record Payment</h2>
+                <p style="font-size:12px;color:var(--text-muted);">Invoice: <span id="payInvId" class="mono" style="color:var(--accent);font-weight:700;"></span></p>
+            </div>
+        </div>
+        <div style="padding:20px 28px;">
+            <div class="form-row">
+                <div class="form-group"><label class="form-label">Invoice Total</label><input type="text" id="payInvTotal" class="form-control" disabled style="font-weight:700;color:var(--accent);"></div>
+                <div class="form-group"><label class="form-label">Previously Paid</label><input type="text" id="payPrevPaid" class="form-control" disabled></div>
+            </div>
+            <div id="payMinAmtRow" class="form-group hidden">
+                <label class="form-label" style="color:var(--warning);">Minimum Payment Required</label>
+                <input type="text" id="payMinAmt" class="form-control" disabled style="font-weight:700;color:var(--warning);border-color:var(--warning);">
+                <p style="font-size:11px;color:var(--text-muted);margin-top:4px;"><svg width="11" height="11"><use href="#ico-info"/></svg> Enter at least this amount to partially settle a credit invoice.</p>
+            </div>
+            <div class="form-group"><label class="form-label">Amount Paying Now (₹) <span class="req">*</span></label><input type="number" id="payNowAmt" class="form-control" min="0" step="0.01" placeholder="Enter amount…" oninput="updatePayBalance()"></div>
+            <div class="form-group"><label class="form-label">Remaining Balance</label><input type="text" id="payBalance" class="form-control" disabled style="font-weight:700;color:var(--danger);"></div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Payment Mode</label>
+                    <select id="payMode" class="form-control">
+                        <option value="Cash">Cash</option><option value="UPI">UPI</option>
+                        <option value="Card">Card</option><option value="NetBanking">Net Banking</option><option value="Cheque">Cheque</option>
+                    </select>
+                </div>
+                <div class="form-group"><label class="form-label">Reference No.</label><input type="text" id="payRef" class="form-control" placeholder="UTR / Cheque / Txn ID"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closePaymentModal()">Cancel</button>
+            <button class="btn btn-success" onclick="confirmPayment()"><svg width="13" height="13"><use href="#ico-check"/></svg> Confirm Payment</button>
+        </div>
+    </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
